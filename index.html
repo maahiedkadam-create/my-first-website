@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hii Maahie</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #f9fbff;
+      --muted: #b9c3d6;
+      --rose: #ff6b9a;
+      --gold: #ffd166;
+      --aqua: #51e5d4;
+      --violet: #8f7cff;
+      --glass: rgba(255, 255, 255, 0.12);
+      --line: rgba(255, 255, 255, 0.24);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 15% 15%, rgba(255, 107, 154, 0.35), transparent 32%),
+        radial-gradient(circle at 80% 20%, rgba(81, 229, 212, 0.28), transparent 28%),
+        radial-gradient(circle at 50% 88%, rgba(255, 209, 102, 0.24), transparent 34%),
+        linear-gradient(135deg, #111827 0%, #271f4a 48%, #0b1324 100%);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: white;
+      box-shadow: 0 0 20px currentColor;
+      animation: float 8s ease-in-out infinite;
+      opacity: 0.75;
+    }
+
+    .sparkle:nth-child(1) { top: 13%; left: 21%; color: var(--gold); animation-delay: -1s; }
+    .sparkle:nth-child(2) { top: 28%; right: 16%; color: var(--aqua); animation-delay: -3s; }
+    .sparkle:nth-child(3) { right: 27%; bottom: 19%; color: var(--rose); animation-delay: -5s; }
+    .sparkle:nth-child(4) { left: 14%; bottom: 23%; color: var(--violet); animation-delay: -7s; }
+
+    .stage {
+      position: relative;
+      width: min(92vw, 980px);
+      min-height: min(72vh, 620px);
+      display: grid;
+      place-items: center;
+      padding: clamp(28px, 6vw, 72px);
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,0.18), rgba(255,255,255,0.06)),
+        rgba(255,255,255,0.06);
+      box-shadow:
+        0 30px 100px rgba(0,0,0,0.42),
+        inset 0 1px 0 rgba(255,255,255,0.26);
+      backdrop-filter: blur(22px);
+    }
+
+    .stage::before,
+    .stage::after {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.12);
+      pointer-events: none;
+    }
+
+    .stage::after {
+      inset: auto;
+      width: 56%;
+      height: 3px;
+      top: 0;
+      left: 22%;
+      border: 0;
+      border-radius: 999px;
+      background: linear-gradient(90deg, transparent, var(--gold), var(--rose), var(--aqua), transparent);
+      box-shadow: 0 0 32px rgba(255,255,255,0.55);
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 22px;
+      padding: 9px 15px;
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(255,255,255,0.08);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--aqua);
+      box-shadow: 0 0 18px var(--aqua);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(4.2rem, 15vw, 11rem);
+      line-height: 0.88;
+      letter-spacing: 0;
+      text-wrap: balance;
+    }
+
+    .hello {
+      display: block;
+      color: rgba(255,255,255,0.9);
+      font-weight: 300;
+      text-shadow: 0 8px 35px rgba(0,0,0,0.28);
+    }
+
+    .name {
+      display: block;
+      margin-top: 10px;
+      font-weight: 900;
+      background: linear-gradient(90deg, var(--gold), var(--rose), var(--aqua));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 12px 34px rgba(255, 107, 154, 0.22));
+    }
+
+    .tagline {
+      max-width: 660px;
+      margin: clamp(22px, 4vw, 34px) auto 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.28rem);
+      line-height: 1.7;
+    }
+
+    .shine {
+      position: absolute;
+      inset: -35%;
+      background: conic-gradient(from 90deg, transparent, rgba(255,255,255,0.18), transparent 30%);
+      animation: rotate 9s linear infinite;
+      pointer-events: none;
+      opacity: 0.45;
+    }
+
+    @keyframes rotate {
+      to { transform: rotate(1turn); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+      50% { transform: translate3d(16px, -26px, 0) scale(1.35); }
+    }
+
+    @media (max-width: 640px) {
+      .stage {
+        width: 92vw;
+        min-height: 70vh;
+        border-radius: 24px;
+      }
+
+      .stage::before {
+        inset: 12px;
+        border-radius: 18px;
+      }
+
+      .eyebrow {
+        font-size: 0.68rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <span class="sparkle"></span>
+  <span class="sparkle"></span>
+  <span class="sparkle"></span>
+  <span class="sparkle"></span>
+
+  <main class="stage" aria-label="Hello Maahie greeting">
+    <div class="shine"></div>
+    <section class="content">
+      <p class="eyebrow">A little sparkle for you</p>
+      <h1>
+        <span class="Hii">Hii</span>
+        <span class="name">Maahie</span>
+      </h1>
+      <p class="tagline">A bright, glossy greeting page with soft glass, glowing color, and a tiny bit of motion.</p>
+    </section>
+  </main>
+</body>
+</html>
